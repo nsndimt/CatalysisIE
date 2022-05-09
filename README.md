@@ -31,11 +31,10 @@ We are sorry that we cannot distribute the whole search engine and correlation a
 Here we show you how we search query related articles from our highly relevant article collection
 ###### Pyserini
 follow the `Guide to indexing and searching English documents` section at pyserini's [guideline](https://github.com/castorini/pyserini/#sparse-indexes)
-1. we split each article into paragraphs using sliding window algorithm: the 1st paragraph contains the 1st to 10th sentence, the 2nd paragraph contains the 11th to 20th sentence and so on. As lessons learned from [TREC-COVID challenge](https://github.com/castorini/anserini/blob/master/docs/experiments-cord19.md) shows that treat the full text as a single document is not ideal.
+1. we split each article into paragraphs using sliding window algorithm: the 1st paragraph contains the 1st to 10th sentence, the 2nd paragraph contains the 11th to 20th sentence and so on. As lessons learned from [TREC-COVID challenge](https://github.com/castorini/anserini/blob/master/docs/experiments-cord19.md) and [TREC 2007 genomics track](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-10-46) shows that treat the full text as a single document is not a good design. A window size of 10 is proven to be effective on [MS MARCO Document Ranking](https://arxiv.org/pdf/2101.05667.pdf)
 2. we use BM25(k1=1.2, b=0.9) to search paragraphs, we tune the parameters of BM25 by optimizing the following retrieval task: we using the title of each article as query and search the whole collection of article abstracts. The higher we rank the corresponding abstract which comes from the same article as the title, the better the parameters. This is the same as what is done in [Content-Based Weak Supervision for Ad-Hoc Re-Ranking
 ](https://arxiv.org/abs/1707.00189)
-3. The final rank is based on the sum of the top 3 paragraph BM25 scores of each article. 
-4. feel free to change the size and stride of sliding window at step 1, or the K value in top K socre summation at step 3. I choose these value mainly for better visual display of articles.
+3. The final rank is based on the sum of the top 3 paragraph BM25 scores of each article. Note that directly take the maxiumal score is more popular as suggested by expriments on [Robust04](https://arxiv.org/pdf/1905.09217.pdf). We use top 3 mainly for better visual display of articles.
 
 ###### Pymongo
 Here we store the metadata of each paper in MongoDB and use Pymongo to access it. Feel free change `load_db` and `fetch_paper` function to use other metadata storage.
