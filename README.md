@@ -26,7 +26,24 @@ The `train.ipynb` notebook gives examples of how to train your own model on your
 The `prediction.ipynb`  notebook gives examples of how to use our model to extract catalysis information on given text
 
 ### Application
-The `application.ipynb`  notebook gives guideline on how to reuse our system code and build your own application on your own data
+We are sorry that we cannot distribute the whole search engine and correlation analysis system since some articles in our collection are not open-accessed. Sharing those is against [Elsevier's TDM policy](https://www.elsevier.com/about/policies/text-and-data-mining/text-and-data-mining-faq). But we provide the key piece of code of our system, which should help you build a similar system on you own data.
+#### search engine (`streamlit_correlation.py`)
+Here we show you how we search query related articles from our highly relevant article collection
+###### Pyserini
+follow the `Guide to indexing and searching English documents` section at pyserini's [guideline](https://github.com/castorini/pyserini/#sparse-indexes)
+1. we split each article into paragraphs using sliding window algorithm: the 1st paragraph contains the 1st to 10th sentence, the 2nd paragraph contains the 11th to 20th sentence and so on. As lessons learned from [TREC-COVID challenge](https://github.com/castorini/anserini/blob/master/docs/experiments-cord19.md) shows that treat the full text as a single document is not ideal.
+2. we use BM25(k1=1.2, b=0.9) to search paragraphs, we tune the parameters of BM25 by optimizing the following retrieval task: we using the title of each article as query and search the whole collection of article abstracts. The higher we rank the corresponding abstract which comes from the same article as the title, the better the parameters. This is the same as what is done in [Content-Based Weak Supervision for Ad-Hoc Re-Ranking
+](https://arxiv.org/abs/1707.00189)
+3. The final rank is based on the sum of the top 3 paragraph BM25 scores of each article. 
+4. feel free to change the size and stride of sliding window at step 1, or the K value in top K socre summation at step 3. I choose these value mainly for better visual display of articles.
+
+###### Pymongo
+Here we store the metadata of each paper in MongoDB and use Pymongo to access it. Feel free change `load_db` and `fetch_paper` function to use other metadata storage.
+
+#### correlation analysis system( `streamlit_correlation.py`)
+Here we show you how we analyze the correlation between entities
+1. you need to provide a pandas DataFrame which contains `doi`,`sent_i`,`label`,`span` and `norm_span` five columns. It should covers all extracted chemical entities, their index(which paper, which sentence), their label(which type of entity), their normalization form(mainly to aggregate alternative expressions)
+2. Currently, we search the normalized entity, which could cause the following problems: `Ru on C` returns no result, since `Ru on C` will be normlized into `Ru C`. So searching `Ru C` has result while searching `Ru on C` has no result. One alternative is to search the raw entity, but in this way, the co-occurance patter will be greatly weakened by various alternative expression. So we decided to design the system in current form. In the furture, we may have better normalization techniques to solve this issue. 
 
 ### Contact
 Please create an issue or email to [zhangyue@udel.edu](mailto:zhangyue@udel.edu) should you have any questions.
