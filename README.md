@@ -13,8 +13,8 @@
 8. pyserini==0.13.0
 
 
-### Download pretrained BERT and NER model checkpoint
-Download [pretrained BERT](https://drive.google.com/file/d/1guDHCs6Y_ybORQJem5pEqHmtZ3ZlQrsc/view?usp=sharing) and [model checkpoints](https://drive.google.com/file/d/19yKMp0vEeKaaHXjWtnKgoml-NOx1h9LE/view?usp=sharing), extract it using `tar xvzf`, and put everything into `pretrained` and `checkpoint` directory, respectively
+### Download annotated data, pretrained BERT and NER model checkpoint
+Download [dataset](https://zenodo.org/record/6533264#.YnqkmhPMKdY) from zenodo and follow the dataset instruction to extract the data
 
 ### Reproduce
 The `reproduce.ipynb` notebook provides instructions to reproduce our main expriment result using ALL data
