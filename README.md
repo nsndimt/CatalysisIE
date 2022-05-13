@@ -28,7 +28,7 @@ The `prediction.ipynb`  notebook gives examples of how to use our model to extra
 ### Application
 We are sorry that we cannot distribute the whole search engine and correlation analysis system since some articles in our collection are not open-accessed. Sharing those is against [Elsevier's TDM policy](https://www.elsevier.com/about/policies/text-and-data-mining/text-and-data-mining-faq). But we provide the key piece of code of our system, which should help you build a similar system on you own data.
 
-The catalysis search engine can be accessed through: [infochain.ece.udel.edu/catalysis_search](infochain.ece.udel.edu/catalysis_search). The catalysis correlation analysis can be accessed through: [infochain.ece.udel.edu/catalysis_correlation](infochain.ece.udel.edu/catalysis_correlation)
+The catalysis search engine can be accessed through: [infochain.ece.udel.edu/catalysis_search](http://infochain.ece.udel.edu/catalysis_search). The catalysis correlation analysis can be accessed through: [infochain.ece.udel.edu/catalysis_correlation](http://infochain.ece.udel.edu/catalysis_correlation)
 
 #### search engine (`streamlit_correlation.py`)
 Here we show you how we search query related articles from our highly relevant article collection
