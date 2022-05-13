@@ -27,6 +27,9 @@ The `prediction.ipynb`  notebook gives examples of how to use our model to extra
 
 ### Application
 We are sorry that we cannot distribute the whole search engine and correlation analysis system since some articles in our collection are not open-accessed. Sharing those is against [Elsevier's TDM policy](https://www.elsevier.com/about/policies/text-and-data-mining/text-and-data-mining-faq). But we provide the key piece of code of our system, which should help you build a similar system on you own data.
+
+The catalysis search engine can be accessed through: infochain.ece.udel.edu/catalysis_search. The catalysis correlation analysis can be accessed through: infochain.ece.udel.edu/catalysis_correlation
+
 #### search engine (`streamlit_correlation.py`)
 Here we show you how we search query related articles from our highly relevant article collection
 ###### Pyserini
@@ -43,6 +46,8 @@ Here we store the metadata of each paper in MongoDB and use Pymongo to access it
 Here we show you how we analyze the correlation between entities
 1. you need to provide a pandas DataFrame which contains `doi`,`sent_i`,`label`,`span` and `norm_span` five columns. It should covers all extracted chemical entities, their index(which paper, which sentence), their label(which type of entity), their normalization form(mainly to aggregate alternative expressions)
 2. Currently, we search the normalized entity, which could cause the following problems: `Ru on C` returns no result, since `Ru on C` will be normlized into `Ru C`. So searching `Ru C` has result while searching `Ru on C` has no result. One alternative is to search the raw entity, but in this way, the co-occurance patter will be greatly weakened by various alternative expression. So we decided to design the system in current form. In the furture, we may have better normalization techniques to solve this issue. 
+
+
 
 ### Contact
 Please create an issue or email to [zhangyue@udel.edu](mailto:zhangyue@udel.edu) should you have any questions.
