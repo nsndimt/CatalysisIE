@@ -1,4 +1,4 @@
-
+Code, Data, and Checkpoint For [Unleashing the Power of Knowledge Extraction from Scientific Literature in Catalysis](https://github.com/nsndimt/CatalysisIE/blob/main/JCIM2022.pdf)
 ### Installation required Python package
 
 1. pytorch==1.8.1
