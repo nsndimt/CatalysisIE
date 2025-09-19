@@ -1,4 +1,9 @@
-Code, Data, and Checkpoint For [Unleashing the Power of Knowledge Extraction from Scientific Literature in Catalysis](https://github.com/nsndimt/CatalysisIE/blob/main/JCIM2022.pdf)
+# Unleashing the Power of Knowledge Extraction from Scientific Literature in Catalysis
+
+Include Code, Data, Checkpoint and [Paper PDF](https://github.com/nsndimt/CatalysisIE/blob/main/JCIM2022.pdf)
+
+JCIM paper link: [https://pubs.acs.org/doi/10.1021/acs.jcim.2c00359](https://pubs.acs.org/doi/10.1021/acs.jcim.2c00359)
+
 ### Installation required Python package
 
 1. pytorch==1.8.1
